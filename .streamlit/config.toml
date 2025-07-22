@@ -1,0 +1,7 @@
+[theme]
+base = "dark"
+primaryColor = "#00CFCF"             # Color principal (puedes ajustar al color SustREND)
+backgroundColor = "#0E1117"          # Fondo oscuro
+secondaryBackgroundColor = "#262730" # Fondo secundario (sidebar, paneles)
+textColor = "#FAFAFA"                # Texto claro
+font = "sans serif"
