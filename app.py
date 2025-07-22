@@ -19,6 +19,8 @@ def cargar_datos_desde_excel(file):
     resumen_df = pd.read_excel(xls, sheet_name="Resumen Cálculo", skiprows=2, usecols="A:C")
     resumen_df.columns = ["Categoria", "Emision_tCO2e", "Porcentaje"]
     resumen_df.dropna(inplace=True)
+    resumen_df["Emision_tCO2e"] = pd.to_numeric(resumen_df["Emision_tCO2e"], errors='coerce')
+
     total_emisiones = resumen_df["Emision_tCO2e"].sum()
     alcances_df = pd.read_excel(xls, sheet_name="Alcances", usecols="A:B", nrows=30).fillna("")
     ano, empleados, superficie = None, None, None
@@ -35,6 +37,7 @@ def cargar_datos_desde_excel(file):
             except: superficie = None
     emisiones_df = pd.read_excel(xls, sheet_name="Resumen Emisiones", header=1)
     emisiones_df.rename(columns={"Emisión CO2e\n[t]": "Emisiones (tCO2e)", "% del total": "% del total"}, inplace=True)
+    emisiones_df["Emisiones (tCO2e)"] = pd.to_numeric(emisiones_df["Emisiones (tCO2e)"], errors='coerce')
     emisiones_df["Año"] = ano
     return {"ano": ano, "total": total_emisiones, "empleados": empleados, "superficie": superficie,
             "resumen": resumen_df, "emisiones_detalle": emisiones_df}
