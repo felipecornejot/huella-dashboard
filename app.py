@@ -4,7 +4,7 @@ import plotly.express as px
 
 st.set_page_config(page_title="Huella de Carbono - Dashboard", layout="wide")
 
-st.title("📊 Dashboard de Huella de Carbono Organizacional - SustREND")
+st.title("📊 Dashboard de Huella de Carbono Organizacional - Sustrend")
 st.markdown("Este dashboard interactivo muestra las **emisiones de GEI** y métricas asociadas, basado en los datos de la huella de carbono organizacional calculada para el Comité de Desarrollo Productivo Regional Bío-Bío (2024).")
 
 st.sidebar.header("📁 Cargar datos")
@@ -128,5 +128,5 @@ st.download_button("💾 Exportar resultados filtrados a CSV", data=csv_data, fi
 st.markdown("---")
 col1, col2, col3 = st.columns([1,1,1])
 with col2:
-    st.image("sustrend_logo.png", use_column_width=True)
-st.write("<center><em>Dashboard elaborado por SustREND - Datos Programa HuellaChile, {}</em></center>".format(ano), unsafe_allow_html=True)
+    st.image("sustrend_logo.png", use_container_width=True)
+st.write("<center><em>Dashboard elaborado por Sustrend - Datos Programa HuellaChile, {}</em></center>".format(ano), unsafe_allow_html=True)
