@@ -72,7 +72,11 @@ alcance_colors = {
     "Alcance 2": "#2196F3",
     "Alcance 3": "#FFC107"
 }
-alcances_df = resumen_df[resumen_df["Categoria"].str.startswith("Alcance")]
+
+# FIX aplicado aquí:
+alcances_df = resumen_df[
+    resumen_df["Categoria"].astype(str).str.startswith("Alcance", na=False)
+]
 alcances_df["Explicacion"] = alcances_df["Categoria"].map(alcance_map)
 
 fig_alcances = px.bar(
@@ -87,8 +91,8 @@ fig_alcances.update_traces(
 st.plotly_chart(fig_alcances, use_container_width=True)
 
 st.subheader("Filtrar y Visualizar Emisiones Detalladas")
-alcance_opts = sorted(emisiones_df["Alcance"].unique())
-cat_opts = sorted(emisiones_df["Categoría"].unique())
+alcance_opts = sorted(emisiones_df["Alcance"].dropna().unique())
+cat_opts = sorted(emisiones_df["Categoría"].dropna().unique())
 
 alcance_sel = st.multiselect("Filtrar por Alcance:", alcance_opts, default=alcance_opts)
 cat_sel = st.multiselect("Filtrar por Categoría:", cat_opts, default=cat_opts)
